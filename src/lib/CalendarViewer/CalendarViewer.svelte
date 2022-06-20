@@ -1,18 +1,10 @@
 <script lang="ts">
   import Month from "./Month.svelte";
+  import { getWeekNames } from "../Utils/Utils";
+  import {
+    currentDate,
+  } from "../../currentDateStore";
 
-  function getWeekNames(locale = "en-US") {
-    var baseDate = new Date(Date.UTC(2017, 0, 2));
-    var weekDays: any[] = [];
-    for (let i = 1; i <= 7; i++) {
-      const weekName = baseDate.toLocaleDateString(locale, {
-        weekday: "short",
-      });
-      weekDays.push(weekName);
-      baseDate.setDate(baseDate.getDate() + 1);
-    }
-    return weekDays;
-  }
 </script>
 
 <section class="Section">
@@ -22,13 +14,12 @@
         {weekDay}
       </h4>
     {/each}
-    <Month />
+    <Month year={$currentDate.getFullYear()} month={$currentDate.getMonth()} />
   </section>
 </section>
 
 <style lang="scss">
   .Section {
-    background-color: #f9feff;
     border-radius: 10px;
     margin: 0 auto;
     width: 80%;
@@ -42,28 +33,22 @@
 
   .Grid {
     display: grid;
-    grid-template-columns: repeat(7, calc(100% / 7) + .01);
+    grid-template-columns: repeat(7, calc(100% / 7) + 0.01);
     grid-auto-rows: minmax(100px, 1fr);
     grid-template-rows: 2rem repeat(5, minmax(100px, 1fr));
     width: 100%;
-    & > .Day,
-    .DaysOfWeek {
-      display: block;
-      padding-top: 0.2rem;
-      border: solid 1px #81818130;
-      margin: 0;
-    }
-
     & > .DaysOfWeek {
+      margin: 0;
+      border: solid 1px #81818130;
       padding-top: 0;
-      background-color: var(--primary)
+      background-color: var(--primary);
     }
 
-    & > .Day:nth-last-child(7) {
+    & > :global(.Day:nth-last-child(7)) {
       border-bottom-left-radius: 10px;
     }
 
-    & > .Day:nth-last-child(1) {
+    & > :global(.Day:nth-last-child(1)) {
       border-bottom-right-radius: 10px;
     }
   }

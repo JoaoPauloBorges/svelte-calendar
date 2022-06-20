@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@svelte-parts/icons": "^0.0.24",
+    "just-throttle": "^4.0.1",
     "node-sass": "^7.0.1",
     "sass": "^1.52.3"
   }

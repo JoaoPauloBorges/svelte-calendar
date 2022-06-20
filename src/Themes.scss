@@ -3,38 +3,46 @@
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
-body {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
 html {
   color: var(--color);
   background-color: var(--background-color);
 
   --background-color: #f0f2f5;
   --primary: greenyellow;
-  --secondary: #002940;
+  --secondary: greenyellow;
   --color: black;
   --layout-header-bg-color: #001529;
-
-  &,
-  * {
-    transition: background-color .6s, color .15s;
-  }
+  --section-bg-color: #f9feff;
+  --day-disable: #9e9e9e45;
 
   &.dark-mode {
     color: var(--color);
     background-color: var(--background-color);
 
     --background-color: #0d1117;
-    --primary: var(--background-color);
-    --primary: #2a2a2a;
-    --secondary: #002940;
+    --primary: #193FFF;
+    --primary: #00a8f6;
+    --primary: #130d6a;
+    --secondary: #0925B3;
     --color: whitesmoke;
     --layout-header-bg-color: #ff3e00;
+    --section-bg-color: #262525;
+    --section-bg-color: var(--background-color);
+    --section-bg-color: #161b23;
+    --day-disable: var(--background-color);
+    --day-disable:  #272f3d;
   }
+
+  &,
+  * {
+    transition: background-color .6s;
+  }
+}
+
+body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 button {
