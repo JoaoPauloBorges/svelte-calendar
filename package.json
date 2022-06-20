@@ -20,6 +20,7 @@
     "vite": "^2.9.9"
   },
   "dependencies": {
+    "@svelte-parts/icons": "^0.0.24",
     "node-sass": "^7.0.1",
     "sass": "^1.52.3"
   }
