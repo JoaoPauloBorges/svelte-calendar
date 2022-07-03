@@ -12,7 +12,6 @@
 
 <style lang="scss">
   .Day {
-    background-color: var(--section-bg-color);
     display: block;
     padding-top: 0.2rem;
     border: solid 1px #81818130;
@@ -25,7 +24,7 @@
       position: relative;
     }
     &--current > .CurrentDayFlag {
-      background-color: var(--secondary);
+      background-color: var(--primary);
       border-radius: 50%;
       width: 2.5rem;
       height: 1.2rem;

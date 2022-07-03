@@ -20,6 +20,7 @@
 
 <style lang="scss">
   .Section {
+    background-color: var(--section-bg-color);
     border-radius: 10px;
     margin: 0 auto;
     width: 80%;
