@@ -10,13 +10,13 @@
   <div class="actions">
     <button on:click={() => resetCurrentDate()}> 2Day </button>
     <h2>
-      {$currentDate.getFullYear()}
+      {$currentDate.getUTCFullYear()}
     </h2>
     <button on:click={() => decreaseMonth()} type="button">
       <LeftArrowIco />
     </button>
     <h3 class="Month">
-      {getMonthName($currentDate.getMonth())}
+      {getMonthName($currentDate.getUTCMonth())}
     </h3>
     <button on:click={() => increaseMonth()} type="button">
       <RightArrowIco />

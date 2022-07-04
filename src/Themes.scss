@@ -7,7 +7,6 @@ html {
   color: var(--color);
   background-color: var(--html-background-color);
 
-  // --layout-header-bg-color: #001529;
   --layout-header-bg-color: #003265;
   --html-background-color: #f0f2f5;
   --primary: greenyellow;
@@ -15,8 +14,10 @@ html {
   --color: black;
   --section-bg-color: #f9feff;
   --day-disable: #9e9e9e45;
+  --modal-backdrop: rgba(0, 0, 0, 0.5);
 
   &.dark-mode {
+    color-scheme: dark;
     color: var(--color);
     background-color: var(--html-background-color);
 
@@ -27,6 +28,7 @@ html {
     --secondary: #106c15;
     --section-bg-color: #161b23;
     --day-disable: #272f3d;
+    --modal-backdrop: rgba(0, 0, 0, 0.7)
   }
 
   &,
@@ -43,7 +45,8 @@ body {
 
 button {
   border-radius: 5px;
-  border: 1px solid black;
+  border: none;
+  cursor: pointer;
 }
 
 .button {

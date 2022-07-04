@@ -1,10 +1,17 @@
 <script lang="ts">
   import Month from "./Month.svelte";
   import { getWeekNames } from "../Utils/Utils";
-  import {
-    currentDate,
-  } from "../../currentDateStore";
+  import { currentDate } from "../../currentDateStore";
+  import { eventList, fetchHolidays } from "../../eventsStore";
+  import { beforeUpdate, onMount } from "svelte";
 
+  onMount(async () => {
+    fetchHolidays($currentDate);
+  });
+
+  beforeUpdate(() => {
+    console.log($eventList)
+  })
 </script>
 
 <section class="Section">
@@ -14,7 +21,12 @@
         {weekDay}
       </h4>
     {/each}
-    <Month year={$currentDate.getFullYear()} month={$currentDate.getMonth()} />
+    {#key $currentDate}
+      <Month
+        year={$currentDate.getUTCFullYear()}
+        month={$currentDate.getUTCMonth()}
+      />
+    {/key}
   </section>
 </section>
 

@@ -4,7 +4,7 @@ export function getWeekNames(locale = "en-US") {
   for (let i = 1; i <= 7; i++) {
     const weekName = baseDate.toLocaleDateString(locale, { weekday: "short" });
     weekDays.push(weekName);
-    baseDate.setDate(baseDate.getDate() + 1);
+    baseDate.setDate(baseDate.getUTCDate() + 1);
   }
   return weekDays;
 }
@@ -16,14 +16,14 @@ export const getMonthName = (month: number) => {
 };
 
 export const getMonthDays = (month: number, year: number) => {
-  return new Date(year, month + 1, 0).getDate();
+  return new Date(year, month + 1, 0).getUTCDate();
 };
 export const getFirstDayOfTheWeek = (month: number, year: number) => {
-  return new Date(year, month, 1).getDay() + 1;
+  return new Date(year, month, 1).getUTCDay() + 1;
 };
 
 export const getLastDayOfTheWeek = (month: number, year: number) => {
-  return new Date(year, month, getMonthDays(month, year)).getDay() + 1;
+  return new Date(year, month, getMonthDays(month, year)).getUTCDay() + 1;
 };
 
 export const isDocumentBiggerThanView = () => {
