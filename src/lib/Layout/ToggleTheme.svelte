@@ -25,6 +25,20 @@
 
 <style lang="scss">
   button {
+    margin-left: 3rem;
+    font-size: large;
     height: 2rem;
+    width: 2rem;
+
+    @media (max-width: 450px) {
+      margin-left: 1rem;
+    }
+
+    @media (max-width: 300px) {
+      font-size: medium;
+      margin-left: 1rem;
+      height: 1.5rem;
+      width: 1.5rem;
+    }
   }
 </style>

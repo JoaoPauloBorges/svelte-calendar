@@ -36,10 +36,7 @@
 <section
   class="Day"
   class:Day--disable={disable}
-  on:click={() => {
-    showEventFormModal = true;
-    console.log({ date });
-  }}
+  on:click={() => showEventFormModal = true}
 >
   <h5 class:CurrentDayFlag={current}>{date.getUTCDate()}</h5>
   <section class="EventsContainer">
@@ -81,6 +78,8 @@
     > h5 {
       margin: 0;
       margin-bottom: 0.5rem;
+      font-weight: 500;
+      font-size: small;
     }
   }
 

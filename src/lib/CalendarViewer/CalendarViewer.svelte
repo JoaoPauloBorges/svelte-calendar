@@ -54,6 +54,7 @@
       margin: 0;
       border: solid 1px #81818130;
       padding-top: 0;
+      font-weight: 500;
       background-color: var(--primary);
     }
 
