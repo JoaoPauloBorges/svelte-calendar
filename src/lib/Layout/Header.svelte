@@ -58,12 +58,10 @@
     @media (max-width: 600px) {
       width: -webkit-fill-available;
     }
-
-    & .navigation,
-    .reset {
-      background-color: var(--primary);
-    }
     & .navigation {
+      background-color: transparent;
+      border: 1px solid white;
+      color: white;
       font-size: large;
       height: 2.5rem;
       width: 2.5rem;
@@ -78,10 +76,12 @@
       }
     }
     & .reset {
+      background-color: var(--primary);
       border-radius: 2px;
       padding: 0.5rem 1rem;
       font-size: medium;
       @media (max-width: 300px) {
+        padding: 0.3rem;
         padding: 0.3rem;
       }
     }

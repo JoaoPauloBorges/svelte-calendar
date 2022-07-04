@@ -27,7 +27,6 @@
   let form;
 
   const handleSubmitButton = () => {
-    console.log({ form });
     if (form.checkValidity()) {
       dispatch("cancel", formValues);
     }
@@ -72,7 +71,6 @@
     name="when"
     required
     on:keydown|preventDefault
-    on:change={(e) => console.log("when", formValues.when)}
   />
 
   <Select

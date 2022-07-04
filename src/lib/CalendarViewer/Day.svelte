@@ -22,7 +22,6 @@
     .sort((a, b) => a.when.getTime() - b.when.getTime());
 
   const handleSubmitEvent = ({ detail }) => {
-    console.log("handleSubmitEvent", detail);
     addEvent({
       color: detail.color,
       description: detail.description,

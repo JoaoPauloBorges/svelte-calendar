@@ -2,16 +2,12 @@
   import Month from "./Month.svelte";
   import { getWeekNames } from "../Utils/Utils";
   import { currentDate } from "../../currentDateStore";
-  import { eventList, fetchHolidays } from "../../eventsStore";
-  import { beforeUpdate, onMount } from "svelte";
+  import { fetchHolidays } from "../../eventsStore";
+  import { onMount } from "svelte";
 
   onMount(async () => {
     fetchHolidays($currentDate);
   });
-
-  beforeUpdate(() => {
-    console.log($eventList)
-  })
 </script>
 
 <section class="Section">

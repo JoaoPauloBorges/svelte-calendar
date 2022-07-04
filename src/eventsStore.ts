@@ -44,7 +44,6 @@ export function editEvent(payload: Event) {
       if (event.createdAt !== payload.createdAt) {
         return event;
       }
-      console.log('aaaaaa', { ...payload })
       return { ...payload, createdAt: event.createdAt };
     })
   );

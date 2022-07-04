@@ -31,10 +31,7 @@
 <section class="select">
   <div
     class="selected"
-    on:click={() => {
-      showOptions = true;
-      console.log(selectedValue);
-    }}
+    on:click={() => showOptions = true}
   >
     {@html selected?.label || selected?.render}
     <ArrowDownIcon />

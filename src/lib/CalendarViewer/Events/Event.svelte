@@ -5,14 +5,13 @@
   import EventForm from "./EventForm.svelte";
   import type { Event } from "../Events/Event";
   import { deleteEvent, editEvent } from "../../../eventsStore";
-import { getContrastingFontColor } from "../../Utils/Utils";
+  import { getContrastingFontColor } from "../../Utils/Utils";
   export let event: Event;
 
   let showDetailsModal = false;
   let showEditModal = false;
 
   const handleSubmit = ({ detail }) => {
-    console.log(detail);
     editEvent({
       ...event,
       color: detail.color,
@@ -21,7 +20,7 @@ import { getContrastingFontColor } from "../../Utils/Utils";
     });
   };
 
-  const handleDelete = (evt) => {
+  const handleDelete = () => {
     showDetailsModal = false;
     deleteEvent(event);
   };
@@ -45,7 +44,13 @@ import { getContrastingFontColor } from "../../Utils/Utils";
     <br />
     {#if !event.holiday}
       <section class="Details-actions">
-        <button type="button" on:click={() => {showEditModal = true; showDetailsModal = false}}>
+        <button
+          type="button"
+          on:click={() => {
+            showEditModal = true;
+            showDetailsModal = false;
+          }}
+        >
           <EditIcon />
         </button>
         <button type="button" on:click={handleDelete}>
