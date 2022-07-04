@@ -5,6 +5,7 @@
   import EventForm from "./EventForm.svelte";
   import type { Event } from "../Events/Event";
   import { deleteEvent, editEvent } from "../../../eventsStore";
+import { getContrastingFontColor } from "../../Utils/Utils";
   export let event: Event;
 
   let showDetailsModal = false;
@@ -30,6 +31,7 @@
   class="Event"
   type="button"
   style:background-color={event.color}
+  style:color={getContrastingFontColor(event.color)}
   on:click|stopPropagation={(e) => (showDetailsModal = true)}
 >
   {event.description}
@@ -64,7 +66,6 @@
 
 <style lang="scss">
   .Event {
-    color: var(--color);
     width: 95%;
     height: 1.5rem;
     padding: 0;

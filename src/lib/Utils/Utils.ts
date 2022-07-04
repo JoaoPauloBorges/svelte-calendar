@@ -39,3 +39,11 @@ export const isDocumentBiggerThanView = () => {
   const clientHeight = document.documentElement.clientHeight;
   return clientHeight < scrollHeight;
 };
+
+export const getContrastingFontColor = (color) => {
+  color=color.slice(1, -1);
+  const red = color.slice(0, 2);
+  const green = color.slice(3, 5);
+  const blue = color.slice(4, 6)
+  return (red*0.299 + green*0.587 + blue*0.114) > 150 ? '#000' : '#fff'
+}
