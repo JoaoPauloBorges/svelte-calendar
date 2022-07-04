@@ -13,11 +13,11 @@
 </script>
 
 {#if visible}
-  <div transition:fade class="Backdrop" on:click={handleBackDropClick}>
+  <div transition:fade class="Backdrop" on:click|stopPropagation={handleBackDropClick}>
     <div
       transition:fly={{ duration: 500, y: 200 }}
       class="Modal"
-      on:click={(e) => e.stopPropagation()}
+      on:click|stopPropagation
     >
       <slot />
     </div>

@@ -1,10 +1,14 @@
 <script lang="ts">
   import Event from "./Events/Event.svelte";
-  import { eventList } from "../../eventsStore";
+  import { addEvent, eventList } from "../../eventsStore";
+  import Modal from "../Modal/Modal.svelte";
+  import EventForm from "./Events/EventForm.svelte";
 
   export let disable = false;
   export let current = false;
   export let date;
+
+  let showEventFormModal = false;
 
   const isPortrait = false; //ToDo
   const maxEventsToShowPerDay = isPortrait ? 3 : 4;
@@ -13,12 +17,30 @@
     return new Date(when).toDateString() === new Date(date).toDateString();
   };
 
-  const myEvents = $eventList
+  $: myEvents = $eventList
     .filter((event) => isMyEvent(event.when))
     .sort((a, b) => a.when.getTime() - b.when.getTime());
+
+  const handleSubmitEvent = ({ detail }) => {
+    console.log("handleSubmitEvent", detail);
+    addEvent({
+      color: detail.color,
+      description: detail.description,
+      when: new Date(`${detail.dateUpdate}T${detail.when}`),
+      createdAt: new Date().getTime(),
+      holiday: false,
+    });
+  };
 </script>
 
-<section class="Day" class:Day--disable={disable}>
+<section
+  class="Day"
+  class:Day--disable={disable}
+  on:click={() => {
+    showEventFormModal = true;
+    console.log({ date });
+  }}
+>
   <h5 class:CurrentDayFlag={current}>{date.getUTCDate()}</h5>
   <section class="EventsContainer">
     {#each myEvents.slice(0, maxEventsToShowPerDay) as event}
@@ -26,6 +48,16 @@
     {/each}
   </section>
 </section>
+<Modal
+  visible={showEventFormModal}
+  on:close={() => (showEventFormModal = false)}
+>
+  <EventForm
+    when={date}
+    on:cancel={() => (showEventFormModal = false)}
+    on:submit={handleSubmitEvent}
+  />
+</Modal>
 
 <style lang="scss">
   .Day {

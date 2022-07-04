@@ -1,40 +1,36 @@
 <script lang="ts">
   import EditIcon from "@svelte-parts/icons/feather/edit";
-  import { beforeUpdate, createEventDispatcher, onMount } from "svelte";
+  import SaveIcon from "@svelte-parts/icons/feather/save";
+  import CancelIcon from "@svelte-parts/icons/feather/x";
+  import { createEventDispatcher, onMount } from "svelte";
   import { Colors } from "./colors.enum";
   import Select from "../../Select/Select.svelte";
   import type { Event } from "./Event";
-  
-  export let event: Event;
 
   const dispatch = createEventDispatcher();
-
+  export let event: Event = null;
+  export let when: Date = null;
   const colors = Object.values(Colors);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log({ event });
-    dispatch("submit", event);
-  };
-
-  let formValues = {
-    color: Colors.COLOR2
-  } as any
-
-  onMount(() => {
-    if(event) {
-      formValues = {
-        ...formValues,
-        description: event.description,
-        dateUpdate: new Date(event.when).toISOString().split('T')[0],
+  let formValues = !!event
+    ? {
         color: event.color,
-        when: new Date(event.when).toLocaleTimeString('pt-BR').slice(0, 5),
+        description: event.description,
+        dateUpdate: new Date(event.when).toISOString().split("T")[0],
+        when: new Date(event.when).toLocaleTimeString("pt-BR").slice(0, 5),
       }
-    }
-  })
+    : {
+        color: Colors.COLOR2,
+        dateUpdate: new Date(when).toISOString().split("T")[0],
+      };
 </script>
 
-<form on:submit|preventDefault={handleSubmit}>
+<h2>
+  {new Intl.DateTimeFormat("en-US", { dateStyle: "full" }).format(
+    when || event?.when
+  )}
+</h2>
+<form on:submit|preventDefault={() => dispatch("submit", formValues)}>
   <div class="field">
     <label for="description">
       <EditIcon />
@@ -58,10 +54,18 @@
       on:keydown|preventDefault
     />
   {/if}
-  <input type="time" bind:value={formValues.when} name="when" required on:keydown|preventDefault on:change={(e) => console.log('when',formValues.when)}/>
+  <input
+    type="time"
+    bind:value={formValues.when}
+    name="when"
+    required
+    on:keydown|preventDefault
+    on:change={(e) => console.log("when", formValues.when)}
+  />
 
   <Select
     defaultValue={formValues.color}
+    bind:selectedValue={formValues.color}
     classes={`.ColorOption {
         content: "";
         border-radius: 50%;
@@ -74,6 +78,15 @@
       render: `<span class=ColorOption style="background-color: ${color};" />`,
     }))}
   />
+
+  <section class="form-actions">
+    <button type="submit" on:click={() => dispatch("cancel")}>
+      <SaveIcon />
+    </button>
+    <button type="button" on:click={() => dispatch("cancel")}>
+      <CancelIcon />
+    </button>
+  </section>
 </form>
 
 <style lang="scss">
@@ -125,5 +138,18 @@
   input:invalid {
     border: 1px solid rgb(211, 29, 60);
     box-shadow: 6px 5px 15px -7px red;
+  }
+
+  .form-actions {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 1rem;
+    & button {
+      font-size: 1.5rem;
+      height: 3rem;
+      width: 3rem;
+      border-radius: 50%;
+    }
   }
 </style>
