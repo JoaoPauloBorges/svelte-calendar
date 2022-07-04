@@ -23,6 +23,15 @@
         color: Colors.COLOR2,
         dateUpdate: new Date(when).toISOString().split("T")[0],
       };
+
+  let form;
+
+  const handleSubmitButton = () => {
+    console.log({ form });
+    if (form.checkValidity()) {
+      dispatch("cancel", formValues);
+    }
+  };
 </script>
 
 <h2>
@@ -30,7 +39,10 @@
     when || event?.when
   )}
 </h2>
-<form on:submit|preventDefault={() => dispatch("submit", formValues)}>
+<form
+  bind:this={form}
+  on:submit|preventDefault={() => dispatch("submit", formValues)}
+>
   <div class="field">
     <label for="description">
       <EditIcon />
@@ -80,7 +92,7 @@
   />
 
   <section class="form-actions">
-    <button type="submit" on:click={() => dispatch("cancel")}>
+    <button type="submit" on:click={handleSubmitButton}>
       <SaveIcon />
     </button>
     <button type="button" on:click={() => dispatch("cancel")}>
