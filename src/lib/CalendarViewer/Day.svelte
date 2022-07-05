@@ -1,8 +1,9 @@
 <script lang="ts">
   import Event from "./Events/Event.svelte";
   import { addEvent, eventList } from "../../eventsStore";
-  import Modal from "../Modal/Modal.svelte";
+  import Modal from "../Shared/Modal/Modal.svelte";
   import EventForm from "./Events/EventForm.svelte";
+  import Popover from "../Shared/Popover/Popover.svelte";
 
   export let disable = false;
   export let current = false;
@@ -35,13 +36,27 @@
 <section
   class="Day"
   class:Day--disable={disable}
-  on:click={() => showEventFormModal = true}
+  on:click={() => (showEventFormModal = true)}
 >
   <h5 class:CurrentDayFlag={current}>{date.getUTCDate()}</h5>
   <section class="EventsContainer">
     {#each myEvents.slice(0, maxEventsToShowPerDay) as event}
       <Event {event} />
     {/each}
+    {#if myEvents.length > maxEventsToShowPerDay}
+      <Popover placement="above" title="Events">
+        <button slot="target" type="button" class="showMore">
+          {`${myEvents.length - maxEventsToShowPerDay} More`}
+        </button>
+        <section slot="content">
+          <div class="EventsContainer">
+            {#each myEvents.slice(maxEventsToShowPerDay) as event}
+              <Event {event} />
+            {/each}
+          </div>
+        </section>
+      </Popover>
+    {/if}
   </section>
 </section>
 <Modal
@@ -56,6 +71,14 @@
 </Modal>
 
 <style lang="scss">
+  .showMore {
+    background-color: transparent;
+    width: 100%;
+    height: 1.5rem;
+    padding: 0;
+    font-size: small;
+    display: block;
+  }
   .Day {
     display: block;
     position: relative;

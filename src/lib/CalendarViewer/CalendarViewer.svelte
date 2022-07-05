@@ -10,7 +10,7 @@
   });
 </script>
 
-<section class="Section">
+<section class="Section card">
   <section class="Grid">
     {#each getWeekNames() as weekDay}
       <h4 class="DaysOfWeek">
@@ -28,7 +28,6 @@
 
 <style lang="scss">
   .Section {
-    background-color: var(--section-bg-color);
     border-radius: 10px;
     margin: 0 auto;
     width: 80%;
@@ -36,8 +35,6 @@
     @media (max-width: 720px) {
       width: 100%;
     }
-    -webkit-box-shadow: 10px 12px 15px -11px rgba(0, 0, 0, 0.2);
-    box-shadow: 10px 12px 15px -11px rgba(0, 0, 0, 0.2);
   }
 
   .Grid {

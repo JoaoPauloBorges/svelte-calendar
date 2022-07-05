@@ -4,7 +4,7 @@
   import CancelIcon from "@svelte-parts/icons/feather/x";
   import { createEventDispatcher, onMount } from "svelte";
   import { Colors } from "./colors.enum";
-  import Select from "../../Select/Select.svelte";
+  import Select from "../../Shared/Select/Select.svelte";
   import type { Event } from "./Event";
 
   const dispatch = createEventDispatcher();

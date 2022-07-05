@@ -33,7 +33,6 @@
     border-radius: 10px;
     background-color: var(--section-bg-color);
     opacity: 100%;
-
   }
 
   .Backdrop {

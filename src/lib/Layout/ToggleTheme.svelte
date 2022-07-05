@@ -15,7 +15,7 @@
   });
 </script>
 
-<button type="button" class="button__primary" on:click={toggle}>
+<button type="button" class="button-primary ripple" on:click={toggle}>
   {#if isDark}
     <SunIcon />
   {:else}
@@ -36,7 +36,6 @@
 
     @media (max-width: 300px) {
       font-size: medium;
-      margin-left: 1rem;
       height: 1.5rem;
       width: 1.5rem;
     }

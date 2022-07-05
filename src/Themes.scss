@@ -30,7 +30,7 @@ html {
     --secondary: #106c15;
     --section-bg-color: #161b23;
     --day-disable: #272f3d;
-    --modal-backdrop: rgba(0, 0, 0, 0.7)
+    --modal-backdrop: rgba(0, 0, 0, 0.7);
   }
 
   &,
@@ -46,15 +46,18 @@ body {
 }
 
 button {
+  color: var(--color);
   position: relative;
   border-radius: 5px;
   border: none;
   cursor: pointer;
+}
 
+.ripple {
   overflow: hidden;
 }
 
-button:after {
+.ripple:after {
   content: "";
   background: white;
   display: block;
@@ -62,27 +65,36 @@ button:after {
   position: absolute;
   padding-top: 300%;
   padding-left: 350%;
-  margin-left: -20px!important;
+  margin-left: -20px !important;
   margin-top: -200%;
   opacity: 0;
-  transition: all 1s
+  transition: all 1s;
 }
 
-button:active:after {
+.ripple:active:after {
   padding: 0;
   margin: 0;
   opacity: 1;
-  transition: 0s
+  transition: 0s;
+}
+
+.card {
+  background-color: var(--section-bg-color);
+  -webkit-box-shadow: 10px 12px 15px -11px rgba(0, 0, 0, 0.2);
+  box-shadow: 10px 12px 15px -11px rgba(0, 0, 0, 0.2);
 }
 
 .button {
-  &__primary {
+  &-primary,
+  &-secondary {
     color: var(--color);
+  }
+
+  &-primary {
     background-color: var(--primary);
   }
 
-  &__secondary {
-    color: var(--color);
+  &-secondary {
     background-color: var(--secondary);
   }
 }

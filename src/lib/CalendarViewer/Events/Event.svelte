@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Modal from "../../Modal/Modal.svelte";
+  import Modal from "../../Shared/Modal/Modal.svelte";
   import EditIcon from "@svelte-parts/icons/feather/edit";
   import TrashIcon from "@svelte-parts/icons/feather/trash";
   import EventForm from "./EventForm.svelte";
@@ -27,7 +27,7 @@
 </script>
 
 <button
-  class="Event"
+  class="Event ripple"
   type="button"
   style:background-color={event.color}
   style:color={getContrastingFontColor(event.color)}

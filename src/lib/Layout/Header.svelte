@@ -13,17 +13,17 @@
 
 <header class="header">
   <div class="actions">
-    <button class="reset" on:click={() => resetCurrentDate()}> 2Day </button>
+    <button class="button-primary ripple reset" on:click={() => resetCurrentDate()}> 2Day </button>
     <h2 class="Year">
       {$currentDate.getUTCFullYear()}
     </h2>
-    <button class="navigation" on:click={() => decreaseMonth()} type="button">
+    <button class="navigation ripple" on:click={() => decreaseMonth()} type="button">
       <LeftArrowIco />
     </button>
     <h3 class="Month">
       {getMonthName($currentDate.getUTCMonth())}
     </h3>
-    <button class="navigation" on:click={() => increaseMonth()} type="button">
+    <button class="navigation ripple" on:click={() => increaseMonth()} type="button">
       <RightArrowIco />
     </button>
   </div>
@@ -76,7 +76,6 @@
       }
     }
     & .reset {
-      background-color: var(--primary);
       border-radius: 2px;
       padding: 0.5rem 1rem;
       font-size: medium;
